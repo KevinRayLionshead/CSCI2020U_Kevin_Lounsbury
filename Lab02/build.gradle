@@ -1,0 +1,3 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'csci2020u.lab02.SimpleTest'
