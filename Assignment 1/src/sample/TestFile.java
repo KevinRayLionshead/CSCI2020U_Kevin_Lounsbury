@@ -1,15 +1,20 @@
+package sample;
+
 import java.text.DecimalFormat;
+import java.util.*;
 
 public class TestFile {
     private String filename;
     private double spamProbability;
     private String actualClass;
+    public Map<String, Integer> words;
 
     public TestFile(String filename, double spamProbability,
                     String actualClass){
         this.filename = filename;
         this.spamProbability = spamProbability;
         this.actualClass = actualClass;
+        this.words = new TreeMap<>();
     }
 
     public String getFilename() {return this.filename;}

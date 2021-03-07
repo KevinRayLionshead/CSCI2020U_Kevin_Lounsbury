@@ -8,7 +8,7 @@
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
-    <TableView fx:id="tableView" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.fillWidth="0">
+    <TableView fx:id="tableView" GridPane.rowIndex="0" GridPane.columnIndex="0" >
         <columns>
             <TableColumn fx:id="SSIDCol" text="SSID"></TableColumn>
             <TableColumn fx:id="assignmentsCol" text="Assignments"></TableColumn>

@@ -1,2 +1,10 @@
-package sample;public class EmailFile {
+package sample;
+
+import java.util.Map;
+
+public class EmailFile {
+
+    private String fileName;
+    private Map<String, Integer> wordCount;
+
 }
