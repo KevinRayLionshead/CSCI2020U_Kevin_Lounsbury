@@ -70,7 +70,7 @@ public class Controller {
             if (spamMap.containsKey(key) && hamMap.containsKey(key)){
                 probMap.put(key, spamMap.get(key) / (spamMap.get(key) + hamMap.get(key)));
             }else if(spamMap.containsKey(key)){
-                probMap.put(key, spamMap.get(key) / (spamMap.get(key) + 0f));
+                probMap.put(key, spamMap.get(key) );
             }else {
                 probMap.put(key, 0d);
             }
@@ -86,7 +86,8 @@ public class Controller {
             double probability = 0;
             for(String key : emailFile.words){
                 if(probMap.containsKey(key)) {
-                    probability += (Math.log(1 - probMap.get(key)) -
+                    probability +=
+                            (Math.log(1 - probMap.get(key)) -
                             Math.log(probMap.get(key)));
                 }
             }
@@ -127,12 +128,27 @@ public class Controller {
         createProbMap(probWordIsSpam, probWordIsHam);
 
 
+
+        Set<String> keys = probMap.keySet();
+        Iterator<String> keyIterator = keys.iterator();
+
+        while (keyIterator.hasNext()) {
+            String key = keyIterator.next();
+
+            System.out.println(probMap.get(key));
+
+            if(probMap.get(key) > 1 || probMap.get(key) < 0)
+                System.exit(10);
+
+        }
+
+
         fileSpamProb(testHamLoader);
         fileSpamProb(testSpamLoader);
 
         for(TestFile file:testFiles){
 
-            System.out.println(file.getFilename()+": " +file.getSpamProbability());
+            //System.out.println(file.getFilename()+": " +file.getSpamProbability());
         }
 
 
