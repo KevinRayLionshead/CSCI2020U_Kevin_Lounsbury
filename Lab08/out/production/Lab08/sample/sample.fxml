@@ -1,0 +1,40 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="sample.Controller"
+      xmlns:fx="http://javafx.com/fxml" >
+
+    <MenuBar fx:id="menuBar" >
+        <Menu fx:id="fileMenu" text = "File">
+            <MenuItem fx:id="newItem" text="New" onAction="#HandleNewAction"></MenuItem>
+            <MenuItem fx:id="openItem" text="Open" onAction="#HandleOpenAction"></MenuItem>
+            <MenuItem fx:id="saveItem" text="Save" onAction="#HandleSaveAction"></MenuItem>
+            <MenuItem fx:id="saveAsItem" text="Save As" onAction="#HandleSaveAsAction"></MenuItem>
+            <MenuItem fx:id="exitItem" text="Exit" onAction="#HandleExitAction"></MenuItem>
+        </Menu>
+    </MenuBar>
+
+    <TableView fx:id="tableView"  >
+        <columns>
+            <TableColumn fx:id="SSIDCol" text="SSID"></TableColumn>
+            <TableColumn fx:id="assignmentsCol" text="Assignments"></TableColumn>
+            <TableColumn fx:id="midtermCol" text="Midterm"></TableColumn>
+            <TableColumn fx:id="finalExamCol" text="Final Exam"></TableColumn>
+            <TableColumn fx:id="finalMarkCol" text="Final Mark"></TableColumn>
+            <TableColumn fx:id="letterGradeCol" text="Letter Grade"></TableColumn>
+
+        </columns>
+    </TableView>
+
+
+</VBox>
+
