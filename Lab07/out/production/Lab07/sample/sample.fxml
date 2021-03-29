@@ -8,6 +8,6 @@
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
     <Canvas fx:id="mainCanvas" GridPane.columnIndex="0" GridPane.rowIndex="0" height="500" width="500"></Canvas>
-    <Canvas fx:id="canvas2" GridPane.columnIndex="1" GridPane.rowIndex="0" height="500" width="500"></Canvas>
+    <Canvas fx:id="canvas2" GridPane.columnIndex="0" GridPane.rowIndex="0" height="500" width="500"></Canvas>
 
 </GridPane>
