@@ -64,18 +64,19 @@ public class HttpServerHandler implements Runnable {
 		}
 
 	}
-
+//list all files in project directory
 	private void ListDir(File dir){
 		if (dir.isDirectory()){
 			File[] fileList = dir.listFiles();
 			for(File current: fileList){
 				ListDir(current);
-				//System.out.println(current.getName());
+
 			}
 		}
 		else {
 			try {
 				responseOutput.writeBytes(dir.getPath() + "\n");
+				responseOutput.flush();
 			}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -93,6 +94,7 @@ public class HttpServerHandler implements Runnable {
 
 			String contentType = getContentType(file.getName() + fileDir.getName());
 			byte[] content = new byte[(int) file.length()];
+			System.out.println("file size: " + file.length());
 			FileInputStream fileIn = new FileInputStream(file);
 			fileIn.read(content);
 			fileIn.close();
@@ -114,6 +116,7 @@ public class HttpServerHandler implements Runnable {
 				for(String string:list){
 					output.println(string);
 				}
+				output.flush();
 				output.close();
 			}
 		}catch(IOException e){
@@ -157,16 +160,7 @@ public class HttpServerHandler implements Runnable {
 						   String errorMessage,
 						   String description) throws IOException {
 		String responseCode = "HTTP/1.1 " + errorCode + " " + errorMessage + "\r\n";
-		String content = "<!DOCTYPE html>" +
-				"<html>" +
-				"  <head>" +
-				"    <title>" + errorCode + ": " + errorMessage + "</title>" +
-				"  </head>" +
-				"  <body>" +
-				"    <h1>" + errorCode + ": " + errorMessage + "</h1>" +
-				"    <p>" + description + "</p>" +
-				"  </body>" +
-				"</html>";
+		String content = "Error reading file";
 		sendResponse(responseCode, "text/html", content.getBytes());
 	}
 }

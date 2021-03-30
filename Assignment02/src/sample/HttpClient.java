@@ -2,6 +2,7 @@ package sample;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -46,9 +47,9 @@ public class HttpClient {
 
 				// send the request
 				System.out.println("Request:");
-				System.out.print(command + " " + filename + " HTTP/1.1\r\n");
+				System.out.print(command + " " + filename + "\r\n");
 				System.out.print("Host: " + hostname + "\r\n\r\n");
-				out.print(command + " " + filename + " HTTP/1.1\r\n");
+				out.print(command + " " + filename + "\r\n");
 				out.print("Host: " + hostname + "\r\n\r\n");
 				out.flush();
 
@@ -62,6 +63,7 @@ public class HttpClient {
 					}
 				} else if (command.equalsIgnoreCase("UPLOAD")) {
 					File file = new File(filename);
+					System.out.println(file.length());
 
 					if (!file.exists()) {
 						System.out.println("404, Not Found. The file '" + file.getName() + "' could not be located.");
@@ -71,7 +73,10 @@ public class HttpClient {
 						FileInputStream fileIn = new FileInputStream(file);
 						fileIn.read(content);
 						fileIn.close();
-						out.print(content);
+						System.out.write(content);
+						String message = new String(content, StandardCharsets.UTF_8);
+						out.print(message);
+						out.flush();
 						System.out.println("File Sent!");
 					}
 				} else {
